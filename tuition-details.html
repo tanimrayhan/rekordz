@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tuition Details</title>
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+  <h1 id="title"></h1>
+
+  <div class="box">
+    <h3>➕ Add Month</h3>
+    <input id="monthName" placeholder="Month name (e.g. February 2026)">
+    <input id="classCount" type="number" placeholder="Number of classes">
+    <input id="earning" type="number" placeholder="Earning for this month">
+    <button onclick="addMonth()">Add Month</button>
+  </div>
+
+  <div class="box">
+    <button onclick="toggleEarning()">Show / Hide Earnings</button>
+    <div id="months"></div>
+    <h3 id="total"></h3>
+  </div>
+</div>
+
+<script>
+  const tuitionName = new URLSearchParams(location.search).get("name");
+  title.innerText = "📘 " + tuitionName;
+
+  let data = JSON.parse(localStorage.getItem(tuitionName)) || {
+    months: [],
+    showEarning: true
+  };
+
+  function save() {
+    localStorage.setItem(tuitionName, JSON.stringify(data));
+  }
+
+  function addMonth() {
+    if (!monthName.value || !classCount.value) return alert("Fill all fields");
+
+    data.months.push({
+      name: monthName.value,
+      classes: Number(classCount.value),
+      dates: Array(Number(classCount.value)).fill(""),
+      earning: Number(earning.value || 0)
+    });
+
+    save();
+    monthName.value = classCount.value = earning.value = "";
+    render();
+  }
+
+  function updateDate(m, d, value) {
+    data.months[m].dates[d] = value;
+    save();
+  }
+
+  function toggleEarning() {
+    data.showEarning = !data.showEarning;
+    save();
+    render();
+  }
+
+  function render() {
+    months.innerHTML = "";
+    let totalEarn = 0;
+
+    data.months.forEach((m, i) => {
+      totalEarn += m.earning;
+
+      let html = `<strong>${m.name}</strong><br>
+                  Classes: ${m.classes}<br>`;
+
+      m.dates.forEach((d, j) => {
+        html += `<input type="date"
+          value="${d}"
+          onchange="updateDate(${i},${j},this.value)">`;
+      });
+
+      if (data.showEarning) {
+        html += `<p>💰 Earning: ${m.earning}</p>`;
+      }
+
+      months.innerHTML += `<div class="box">${html}</div>`;
+    });
+
+    total.innerText = data.showEarning
+      ? "Total Earning: " + totalEarn
+      : "Total Earning: Hidden";
+  }
+
+  render();
+</script>
+
+</body>
+</html>
