@@ -14,13 +14,12 @@ body {
   font-family: "Segoe UI", Arial, sans-serif;
   min-height: 100vh;
 
-  /* Light blue glow top-left & bottom-right */
   background:
     radial-gradient(circle at top left, #2f78b5 0%, transparent 45%),
     radial-gradient(circle at bottom right, #2f78b5 0%, transparent 45%),
     radial-gradient(circle at center, #020b1a 0%, #020b1a 100%);
 
-  color: #e6eef7;
+  color: #d2c6ad; /* GLOBAL warm beige */
 }
 
 /* ======================================
@@ -33,18 +32,33 @@ body {
 }
 
 /* ======================================
-   HEADINGS (warm off-white, slightly yellow)
+   HEADINGS
 ====================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #d2c6ad;
+  margin-bottom: 15px;
+}
+
 h1 {
   text-align: center;
   margin-bottom: 30px;
-  color: #f6f1e4; /* warm ivory */
 }
 
-h2,
-h3 {
-  color: #f6f1e4;
-  margin-bottom: 15px;
+/* ======================================
+   PARAGRAPH & TEXT
+====================================== */
+p,
+span,
+label,
+strong,
+small,
+li {
+  color: #d2c6ad;
 }
 
 /* ======================================
@@ -73,23 +87,23 @@ textarea {
   border: 1px solid #2a4d6f;
   border-radius: 8px;
 
-  color: #ffffff;
+  color: #d2c6ad;
   font-size: 15px;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #a8b9cc;
+  color: #c6bba2;
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #f3ddb0; /* warm yellow focus */
+  border-color: #f3ddb0;
 }
 
 /* ======================================
-   BUTTONS (soft yellow, not white)
+   BUTTONS
 ====================================== */
 button {
   width: 100%;
@@ -101,7 +115,7 @@ button {
     #f3ddb0
   );
 
-  color: #000;
+  color: #1a1a1a;
   border: none;
   border-radius: 25px;
 
@@ -128,7 +142,7 @@ a {
   margin-bottom: 18px;
 
   background: rgba(8, 22, 44, 0.9);
-  color: #f6f1e4;
+  color: #d2c6ad;
 
   text-decoration: none;
   border-radius: 16px;
@@ -138,9 +152,13 @@ a {
 }
 
 a:hover {
-  background: rgba(24, 58, 96, 0.95);
+  background: rgba(10, 30, 55, 0.95); /* darker blue, not light */
+  box-shadow:
+    0 0 12px rgba(80, 200, 255, 0.18),
+    inset 0 0 20px rgba(255, 255, 255, 0.03);
   transform: translateY(-2px);
 }
+
 
 /* ======================================
    TUITION LIST ITEMS
@@ -154,6 +172,7 @@ a:hover {
 
   cursor: pointer;
   border: 1px solid rgba(255,255,255,0.08);
+  color: #d2c6ad;
 }
 
 .tuition:hover {
@@ -166,10 +185,11 @@ a:hover {
 table {
   width: 100%;
   border-collapse: collapse;
+  color: #d2c6ad;
 }
 
 th {
-  color: #f6f1e4;
+  color: #d2c6ad;
   padding: 10px;
   border-bottom: 1px solid #2a4d6f;
 }
@@ -194,3 +214,175 @@ td {
     padding: 25px 15px;
   }
 }
+/* ======================================
+   SHOOTING STAR BURSTS
+   (3 at a time)
+====================================== */
+
+.meteors {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Shooting star body */
+/* ======================================
+   SHOOTING STARS (1 → 2 → 3 → 4 WAVES)
+====================================== */
+
+.meteors {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Shooting star body (70% size) */
+.meteors span {
+  position: absolute;
+  top: -30%;
+
+  width: 2px;          /* 70% of 3px */
+  height: 170px;       /* 70% of 240px */
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0),
+    rgba(80,200,255,0.9),
+    rgba(80,200,255,0)
+  );
+
+  border-radius: 50%;
+  transform: rotate(-45deg);
+
+  filter:
+    drop-shadow(0 0 5px rgba(80,200,255,0.8))
+    drop-shadow(0 0 12px rgba(80,200,255,0.5));
+
+  opacity: 0;
+  animation: shooting-star 4s linear infinite;
+}
+
+/* Glowing head (70% size) */
+.meteors span::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -4px;
+
+  width: 8px;
+  height: 8px;
+
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #8fe2ff 45%,
+    rgba(143,226,255,0) 70%
+  );
+
+  border-radius: 50%;
+  filter: blur(0.4px);
+}
+
+/* ---------- WAVE 1 (1 star | 0s) ---------- */
+.meteors span:nth-child(1) {
+  animation-delay: 0s;
+  right: -22%;
+}
+
+/* ---------- WAVE 2 (2 stars | 1s) ---------- */
+.meteors span:nth-child(2),
+.meteors span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.meteors span:nth-child(2) { right: -20%; }
+.meteors span:nth-child(3) { right: -26%; }
+
+/* ---------- WAVE 3 (3 stars | 2s) ---------- */
+.meteors span:nth-child(4),
+.meteors span:nth-child(5),
+.meteors span:nth-child(6) {
+  animation-delay: 2s;
+}
+
+.meteors span:nth-child(4) { right: -18%; }
+.meteors span:nth-child(5) { right: -24%; }
+.meteors span:nth-child(6) { right: -30%; }
+
+/* ---------- WAVE 4 (4 stars | 3s) ---------- */
+.meteors span:nth-child(7),
+.meteors span:nth-child(8),
+.meteors span:nth-child(9),
+.meteors span:nth-child(10) {
+  animation-delay: 3s;
+}
+
+.meteors span:nth-child(7)  { right: -16%; }
+.meteors span:nth-child(8)  { right: -22%; }
+.meteors span:nth-child(9)  { right: -28%; }
+.meteors span:nth-child(10) { right: -34%; }
+
+/* Shooting star motion */
+@keyframes shooting-star {
+  0% {
+    transform: translate(0, 0) rotate(-45deg);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-150vw, 150vh) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+.bg-wave {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  /* SAME thin glowing lines */
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      rgba(80,200,255,0.12),
+      rgba(80,200,255,0.12) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+
+  /* Very soft fade so it blends naturally */
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 65%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle at center,
+    black 65%,
+    transparent 100%
+  );
+
+  filter: blur(0.4px);
+  opacity: 0.6;
+
+  z-index: 0;
+}
+
+
+
