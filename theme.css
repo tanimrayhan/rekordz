@@ -206,14 +206,7 @@ td {
   display: none;
 }
 
-/* ======================================
-   MOBILE RESPONSIVE
-====================================== */
-@media (max-width: 600px) {
-  .page-wrapper {
-    padding: 25px 15px;
-  }
-}
+
 /* ======================================
    SHOOTING STAR BURSTS
    (3 at a time)
@@ -347,6 +340,7 @@ td {
   }
 }
 
+
 .bg-wave {
   position: fixed;
   inset: 0;
@@ -382,7 +376,7 @@ td {
   opacity: 0.6;
 
   z-index: 0;
-}
+} 
 /* ======================================
    RESPONSIVE LAYOUT FIX
    (Desktop + Mobile Friendly)
@@ -396,37 +390,20 @@ td {
   min-height: 100vh;
   text-align: center;
 }
-
-/* ---------- MOBILE OVERRIDE ---------- */
-@media (max-width: 768px) {
-
+@media (max-width: 820px) {
   .page-wrapper {
-    justify-content: flex-start;   /* move content to top */
+    justify-content: flex-start;
     min-height: auto;
-    padding-top: 24px;
-    text-align: left;              /* app-like alignment */
+    padding-top: 32px;
+    text-align: center;
   }
-
-  h1 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    text-align: center;            /* title still centered */
-  }
-
-  a {
-    font-size: 16px;
-    padding: 16px 18px;
-    border-radius: 14px;
-    text-align: left;              /* buttons feel tappable */
-  }
-
-  a::before {
-    margin-right: 10px;
-  }
-
 }
-
-
+@media (max-width: 360px) {
+  .page-wrapper {
+    padding: 16px;
+    text-align: left;
+  }
+}
 
 
 
