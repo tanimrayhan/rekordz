@@ -329,7 +329,7 @@ td {
 /* Shooting star motion */
 @keyframes shooting-star {
   0% {
-    transform: translate(0, 0) rotate(-45deg);
+    transform: translate(0, 0) rotate(-110deg);
     opacity: 0;
   }
 
@@ -342,7 +342,7 @@ td {
   }
 
   100% {
-    transform: translate(-150vw, 150vh) rotate(-45deg);
+    transform: translate(-150vw, 150vh) rotate(-110deg);
     opacity: 0;
   }
 }
@@ -425,6 +425,7 @@ td {
   }
 
 }
+
 
 
 
