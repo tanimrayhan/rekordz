@@ -398,12 +398,65 @@ td {
     text-align: center;
   }
 }
+/* ==============================
+   MOBILE (≤ 360px)
+============================== */
 @media (max-width: 360px) {
+
+  /* Base text scaling */
+  body {
+    font-size: 16px;
+  }
+
+  /* Layout */
   .page-wrapper {
+    justify-content: flex-start;
+    min-height: auto;
     padding: 16px;
     text-align: left;
   }
+
+  /* Headings */
+  h1 {
+    font-size: 22px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  h2, h3 {
+    font-size: 18px;
+  }
+
+  /* Links / buttons */
+  a {
+    font-size: 17px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    text-align: left;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  /* Inputs */
+  input,
+  textarea {
+    font-size: 16px;   /* prevents mobile zoom */
+  }
+
+  /* Reduce visual noise */
+  .meteors {
+    display: none;
+  }
+
+  .bg-wave {
+    opacity: 0.25;
+  }
 }
+
+
 
 
 
