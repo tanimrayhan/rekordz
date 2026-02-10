@@ -13,15 +13,19 @@
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   min-height: 100vh;
-  background: radial-gradient(
-    circle at top right,
-    #0a2a4a,
-    #020b1a 70%
-  );
+
+  /* Light blue glow top-left & bottom-right */
+  background:
+    radial-gradient(circle at top left, #2f78b5 0%, transparent 45%),
+    radial-gradient(circle at bottom right, #2f78b5 0%, transparent 45%),
+    radial-gradient(circle at center, #020b1a 0%, #020b1a 100%);
+
   color: #e6eef7;
 }
 
-/* PAGE WRAPPER (important) */
+/* ======================================
+   PAGE WRAPPER
+====================================== */
 .page-wrapper {
   max-width: 900px;
   margin: auto;
@@ -29,16 +33,17 @@ body {
 }
 
 /* ======================================
-   HEADINGS
+   HEADINGS (warm off-white, slightly yellow)
 ====================================== */
 h1 {
   text-align: center;
   margin-bottom: 30px;
-  color: #ffcc4d;
+  color: #f6f1e4; /* warm ivory */
 }
 
-h2, h3 {
-  color: #ffcc4d;
+h2,
+h3 {
+  color: #f6f1e4;
   margin-bottom: 15px;
 }
 
@@ -50,6 +55,7 @@ h2, h3 {
   border-radius: 14px;
   padding: 20px;
   margin-bottom: 25px;
+
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 30px rgba(0, 153, 255, 0.15);
 }
@@ -62,34 +68,43 @@ textarea {
   width: 100%;
   padding: 12px;
   margin-bottom: 12px;
+
   background: #020b1a;
-  border: 1px solid #1f3b5a;
+  border: 1px solid #2a4d6f;
   border-radius: 8px;
+
   color: #ffffff;
   font-size: 15px;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #8fa6c1;
+  color: #a8b9cc;
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #ffcc4d;
+  border-color: #f3ddb0; /* warm yellow focus */
 }
 
 /* ======================================
-   BUTTONS
+   BUTTONS (soft yellow, not white)
 ====================================== */
 button {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #ffcc4d, #ff9f1a);
+
+  background: linear-gradient(
+    135deg,
+    #fff2cc,
+    #f3ddb0
+  );
+
   color: #000;
   border: none;
   border-radius: 25px;
+
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -108,18 +123,22 @@ a {
   display: block;
   width: 100%;
   text-align: center;
+
   padding: 18px;
   margin-bottom: 18px;
+
   background: rgba(8, 22, 44, 0.9);
-  color: #ffcc4d;
+  color: #f6f1e4;
+
   text-decoration: none;
   border-radius: 16px;
+
   border: 1px solid rgba(255,255,255,0.1);
   transition: 0.3s;
 }
 
 a:hover {
-  background: rgba(18, 42, 74, 0.95);
+  background: rgba(24, 58, 96, 0.95);
   transform: translateY(-2px);
 }
 
@@ -129,18 +148,20 @@ a:hover {
 .tuition {
   padding: 14px;
   margin-top: 12px;
-  background: rgba(18, 42, 74, 0.9);
+
+  background: rgba(24, 58, 96, 0.9);
   border-radius: 10px;
+
   cursor: pointer;
   border: 1px solid rgba(255,255,255,0.08);
 }
 
 .tuition:hover {
-  background: rgba(28, 62, 104, 0.95);
+  background: rgba(38, 78, 126, 0.95);
 }
 
 /* ======================================
-   TABLE (if used)
+   TABLE
 ====================================== */
 table {
   width: 100%;
@@ -148,14 +169,14 @@ table {
 }
 
 th {
-  color: #ffcc4d;
+  color: #f6f1e4;
   padding: 10px;
-  border-bottom: 1px solid #1f3b5a;
+  border-bottom: 1px solid #2a4d6f;
 }
 
 td {
   padding: 10px;
-  border-bottom: 1px solid #1f3b5a;
+  border-bottom: 1px solid #2a4d6f;
 }
 
 /* ======================================
