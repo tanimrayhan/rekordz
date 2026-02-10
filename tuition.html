@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Tuitions</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f6f8; }
+    .box { background: white; padding: 15px; border-radius: 8px; }
+    input, button { padding: 8px; margin-top: 8px; width: 100%; }
+    .tuition {
+      margin-top: 10px;
+      padding: 10px;
+      background: #e3f2fd;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2>📅 Tuition Tracker</h2>
+
+<div class="box">
+  <input id="tName" placeholder="Enter Tuition Name">
+  <button onclick="addTuition()">Add Tuition</button>
+</div>
+
+<div class="box" style="margin-top:20px">
+  <h3>Your Tuitions</h3>
+  <div id="list"></div>
+</div>
+
+<script>
+  let tuitions = JSON.parse(localStorage.getItem("tuitions")) || [];
+
+  function addTuition() {
+    if (!tName.value) return alert("Enter tuition name");
+    tuitions.push({ name: tName.value });
+    localStorage.setItem("tuitions", JSON.stringify(tuitions));
+    tName.value = "";
+    render();
+  }
+
+  function render() {
+    list.innerHTML = "";
+    tuitions.forEach(t => {
+      list.innerHTML += `
+        <div class="tuition"
+          onclick="window.open('tuition-details.html?name=${t.name}','_blank')">
+          📘 ${t.name}
+        </div>
+      `;
+    });
+  }
+
+  render();
+</script>
+
+</body>
+</html>

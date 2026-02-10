@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CT Results</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input { width: 100%; padding: 8px; margin: 5px 0; }
+    button { padding: 8px 15px; }
+  </style>
+</head>
+<body>
+
+  <h2>📊 Record Class Test Results</h2>
+
+  <input type="number" id="ct1" placeholder="CT 1 Marks">
+  <input type="number" id="ct2" placeholder="CT 2 Marks">
+  <input type="number" id="ct3" placeholder="CT 3 Marks">
+  <input type="number" id="ct4" placeholder="CT 4 Marks">
+
+  <button onclick="updateChart()">Show Graph</button>
+
+  <canvas id="ctChart"></canvas>
+
+  <script>
+    const ctx = document.getElementById("ctChart").getContext("2d");
+
+    const chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["CT 1", "CT 2", "CT 3", "CT 4"],
+        datasets: [{
+          label: "CT Marks",
+          data: [0, 0, 0, 0],
+          borderWidth: 2,
+          fill: false
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true, suggestedMax: 100 }
+        }
+      }
+    });
+
+    function updateChart() {
+      chart.data.datasets[0].data = [
+        ct1.value || 0,
+        ct2.value || 0,
+        ct3.value || 0,
+        ct4.value || 0
+      ];
+      chart.update();
+    }
+  </script>
+
+</body>
+</html>
