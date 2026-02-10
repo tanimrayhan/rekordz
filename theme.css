@@ -383,6 +383,50 @@ td {
 
   z-index: 0;
 }
+/* ======================================
+   RESPONSIVE LAYOUT FIX
+   (Desktop + Mobile Friendly)
+====================================== */
+
+/* ---------- DESKTOP (default) ---------- */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* ---------- MOBILE OVERRIDE ---------- */
+@media (max-width: 768px) {
+
+  .page-wrapper {
+    justify-content: flex-start;   /* move content to top */
+    min-height: auto;
+    padding-top: 24px;
+    text-align: left;              /* app-like alignment */
+  }
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;            /* title still centered */
+  }
+
+  a {
+    font-size: 16px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    text-align: left;              /* buttons feel tappable */
+  }
+
+  a::before {
+    margin-right: 10px;
+  }
+
+}
+
+
 
 
 
