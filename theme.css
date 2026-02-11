@@ -208,6 +208,33 @@ td {
   display: none;
 }
 
+/* ===============================
+   NOTES LIST INTERACTION FIX
+=============================== */
+
+.notes-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.notes-list li {
+  padding: 12px 14px;
+  margin-bottom: 10px;
+
+  background: rgba(24, 58, 96, 0.9);
+  border-radius: 10px;
+
+  cursor: pointer;          /* 👈 HAND CURSOR */
+  user-select: none;        /* 👈 NO TEXT I-BEAM */
+
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.notes-list li:hover {
+  background: rgba(38, 78, 126, 0.95);
+  transform: translateY(-1px);
+}
 
 /* ======================================
    SHOOTING STAR BURSTS
