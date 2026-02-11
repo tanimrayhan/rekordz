@@ -17,14 +17,28 @@
 </div>
 
 <script>
-  const notes = document.getElementById("notes");
-  notes.value = localStorage.getItem("studentNotes") || "";
+const notes = document.getElementById("notes");
+const API = "https://rekordz-1.onrender.com";
 
-  function saveNotes() {
-    localStorage.setItem("studentNotes", notes.value);
-    alert("Notes saved!");
-  }
+async function loadNotes() {
+  const res = await fetch(`${API}/notes`);
+  const data = await res.json();
+  notes.value = data.content || "";
+}
+
+async function saveNotes() {
+  await fetch(`${API}/notes`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content: notes.value })
+  });
+  alert("Notes saved!");
+}
+
+// Load saved notes when page opens
+loadNotes();
 </script>
+
 
 </body>
 </html>
