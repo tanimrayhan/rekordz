@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Tuitions</title>
+  <title>Tuition Tracker</title>
   <link rel="stylesheet" href="theme.css">
 </head>
 <body>
@@ -11,42 +10,16 @@
   <h1>📅 Tuition Tracker</h1>
 
   <div class="box">
-    <input id="tName" placeholder="Enter Tuition Name">
+    <input id="tuitionName" placeholder="Enter Tuition Name">
     <button onclick="addTuition()">Add Tuition</button>
   </div>
 
   <div class="box">
     <h3>Your Tuitions</h3>
-    <div id="list"></div>
+    <div id="tuitionList"></div>
   </div>
 </div>
 
-<script>
-  let tuitions = JSON.parse(localStorage.getItem("tuitions")) || [];
-
-  function addTuition() {
-    if (!tName.value) return alert("Enter tuition name");
-    tuitions.push({ name: tName.value });
-    localStorage.setItem("tuitions", JSON.stringify(tuitions));
-    tName.value = "";
-    render();
-  }
-
-  function render() {
-    list.innerHTML = "";
-    tuitions.forEach(t => {
-      list.innerHTML += `
-        <div class="tuition"
-          onclick="window.open('tuition-details.html?name=${t.name}','_blank')">
-          📘 ${t.name}
-        </div>
-      `;
-    });
-  }
-
-  render();
-</script>
-
+<script type="module" src="tuition.js"></script>
 </body>
 </html>
-

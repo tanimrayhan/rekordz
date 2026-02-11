@@ -1,61 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CT Results</title>
+  <title>CT Courses</title>
   <link rel="stylesheet" href="theme.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <div class="page-wrapper">
-  <h1>📊 Record Class Test Results</h1>
+  <h1>📊 Class Tests</h1>
 
   <div class="box">
-    <input type="number" id="ct1" placeholder="CT 1 Marks">
-    <input type="number" id="ct2" placeholder="CT 2 Marks">
-    <input type="number" id="ct3" placeholder="CT 3 Marks">
-    <input type="number" id="ct4" placeholder="CT 4 Marks">
-    <button onclick="updateChart()">Show Graph</button>
+    <input id="courseName" placeholder="Course name">
+    <input id="ctCount" type="number" placeholder="Number of CTs">
+    <button onclick="addCourse()">Add Course</button>
   </div>
 
   <div class="box">
-    <canvas id="ctChart"></canvas>
+    <div id="courseList"></div>
   </div>
 </div>
 
-<script>
-  const ctx = document.getElementById("ctChart").getContext("2d");
-
-  const chart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: ["CT 1", "CT 2", "CT 3", "CT 4"],
-      datasets: [{
-        label: "CT Marks",
-        data: [0, 0, 0, 0],
-        borderWidth: 2,
-        fill: false
-      }]
-    },
-    options: {
-      scales: {
-        y: { beginAtZero: true, suggestedMax: 100 }
-      }
-    }
-  });
-
-  function updateChart() {
-    chart.data.datasets[0].data = [
-      ct1.value || 0,
-      ct2.value || 0,
-      ct3.value || 0,
-      ct4.value || 0
-    ];
-    chart.update();
-  }
-</script>
-
+<script type="module" src="ct.js"></script>
 </body>
 </html>
-

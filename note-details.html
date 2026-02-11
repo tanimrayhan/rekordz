@@ -16,35 +16,6 @@
   </div>
 </div>
 
-<script>
-const API = "https://rekordz-1.onrender.com";
-const params = new URLSearchParams(window.location.search);
-const noteId = params.get("id");
-
-const titleInput = document.getElementById("title");
-const contentInput = document.getElementById("content");
-
-async function loadNote() {
-  const res = await fetch(`${API}/notes/${noteId}`);
-  const note = await res.json();
-  titleInput.value = note.title;
-  contentInput.value = note.content;
-}
-
-async function saveNote() {
-  await fetch(`${API}/notes/${noteId}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      title: titleInput.value,
-      content: contentInput.value
-    })
-  });
-  alert("Saved!");
-}
-
-loadNote();
-</script>
-
+<script type="module" src="notes.js"></script>
 </body>
 </html>

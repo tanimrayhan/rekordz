@@ -1,95 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Notes</title>
+  <title>Notes</title>
   <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
 <div class="page-wrapper">
-
   <h1>📝 Notes</h1>
 
-  <!-- ADD NEW NOTE -->
   <div class="box">
-    <input
-      id="title"
-      type="text"
-      placeholder="Enter note title"
-    >
+    <input id="title" placeholder="Note title">
     <button onclick="addNote()">Add Note</button>
   </div>
 
-  <!-- SAVED NOTES LIST -->
   <div class="box">
-    <h3>Your Notes</h3>
     <ul id="notesList" class="notes-list"></ul>
   </div>
-
 </div>
 
-<script>
-  const API = "https://rekordz-1.onrender.com";
-
-  const titleInput = document.getElementById("title");
-  const notesList = document.getElementById("notesList");
-
-  // Load all notes
-  async function loadNotes() {
-    try {
-      const res = await fetch(`${API}/notes`);
-      const notes = await res.json();
-
-      notesList.innerHTML = "";
-
-      if (notes.length === 0) {
-        const empty = document.createElement("li");
-        empty.textContent = "No notes yet";
-        empty.style.opacity = "0.6";
-        empty.style.cursor = "default";
-        notesList.appendChild(empty);
-        return;
-      }
-
-      notes.forEach(note => {
-        const li = document.createElement("li");
-        li.textContent = note.title;
-
-        li.onclick = () => {
-          window.location.href = `note-details.html?id=${note.id}`;
-        };
-
-        notesList.appendChild(li);
-      });
-
-    } catch (err) {
-      console.error("Failed to load notes", err);
-    }
-  }
-
-  // Add new note
-  async function addNote() {
-    const title = titleInput.value.trim();
-    if (!title) return;
-
-    await fetch(`${API}/notes`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: title,
-        content: ""
-      })
-    });
-
-    titleInput.value = "";
-    loadNotes();
-  }
-
-  // Initial load
-  loadNotes();
-</script>
-
+<script type="module" src="notes.js"></script>
 </body>
 </html>
