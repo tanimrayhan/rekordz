@@ -8,26 +8,24 @@ import {
 
 const provider = new GoogleAuthProvider();
 
-/* LOGIN / SIGNUP */
+/* =========================
+   LOGIN (Google)
+========================= */
 window.login = async () => {
-  await signInWithPopup(auth, provider);
+  try {
+    await signInWithPopup(auth, provider);
+    // redirect is handled by onAuthStateChanged
+  } catch (err) {
+    console.error("Login failed:", err);
+    alert("Login failed. Try again.");
+  }
 };
 
+/* signup = login (same for Google) */
 window.signup = window.login;
 
-/* LOGOUT */
+/* =========================
+   LOGOUT
+========================= */
 window.logout = async () => {
-  await signOut(auth);
-};
-
-/* AUTH GUARD */
-onAuthStateChanged(auth, user => {
-  if (user && location.pathname.endsWith("index.html")) {
-    location.href = "dashboard.html";
-  }
-
-  if (!user && !location.pathname.endsWith("index.html")) {
-    location.href = "index.html";
-  }
-});
-
+  await sig
