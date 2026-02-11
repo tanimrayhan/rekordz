@@ -22,7 +22,12 @@ window.logout = async () => {
 
 /* AUTH GUARD */
 onAuthStateChanged(auth, user => {
+  if (user && location.pathname.endsWith("index.html")) {
+    location.href = "dashboard.html";
+  }
+
   if (!user && !location.pathname.endsWith("index.html")) {
     location.href = "index.html";
   }
 });
+
